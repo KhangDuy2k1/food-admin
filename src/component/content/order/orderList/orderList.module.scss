@@ -1,0 +1,46 @@
+$color-white: white;
+.column {
+    height: 60px;
+}
+.column-id { 
+    width: 2%;
+}
+.column-email {
+
+    width: 25%;
+}
+.column-time {
+    width: 15%;
+}
+.column-name {
+    width: 15%;
+}
+.column-quantity {
+    width: 5%;
+}
+.column-total {
+    width: 15%;
+}
+.column-action {
+    // display: flex;
+    // justify-content: center;
+}
+.column-status {
+    // color: green;
+    width: 10%;
+    font-weight: 600;
+}
+.btn-update {
+    background-color: blue;
+    color: $color-white;
+    margin-right: 10px;
+    ;
+}
+.btn-information {
+    background-color: blue;
+    color: $color-white;
+    ;
+}
+.red-color {
+     color: red;
+}

@@ -1,0 +1,39 @@
+$base-px: 10px;
+.user-container {
+    // color: white;
+    cursor: pointer;
+    border-radius: $base-px;
+    padding: $base-px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #D2691E;
+    text-align: center;
+    margin-bottom: $base-px;
+    .stt { 
+        color: white;
+        // line-height: 52px;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+    .email {
+        display: flex;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        font-weight: 800;
+        flex: 1;
+    }
+    .btn-container { 
+        flex: 2;
+        .btn-update, .btn-delete {
+            margin-right: $base-px;
+            color: white;
+        }
+        .btn-update {
+            background-color: blue;
+        }
+        .btn-delete {
+            background-color: red;
+        }
+    }
+}

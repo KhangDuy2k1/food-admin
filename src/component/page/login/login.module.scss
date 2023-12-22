@@ -1,0 +1,33 @@
+.container {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background:url("https://static.vecteezy.com/system/resources/thumbnails/010/566/757/small/international-coffee-day-banner-design-with-wooden-background-illustration-vector.jpg") no-repeat center fixed;
+    // background-position: center;
+    background-size: cover;
+    .header-form{
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 50;
+    }
+    .form { 
+        // z-index: 1;
+        background-color: #A5D7E8;
+        padding: 60px;
+        border-radius: 10px;
+        
+        .ip-text { 
+            margin-bottom: 10px;
+        } 
+        .btn-login-container { 
+            display: flex;
+            justify-content: flex-end;
+           .btn-login {
+              width: 200px;
+           }
+        } 
+    }
+    
+}
