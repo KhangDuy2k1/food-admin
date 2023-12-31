@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-     isShowOrderInfo: false,
+     isShowDelete: false,
      user: {
-        email: "",
-        phonenumber:"",
+        order_id: "",
+        store_name:"",
+        phone: "",
+        address: "",
+        total_price: "",
+        status: ""
      }
 }
 export const showOrderInfoSlice = createSlice({
   name: 'showOrderInfo',
   initialState,
   reducers: {
-    setShowOrderInfo: (state) => {
-      state.isShowOrderInfo = true
-    },
-    setNotShowOrderInfo: (state) => {
-      state.isShowOrderInfo = false
+    setShowDeleteOrder: (state, action) => {
+      state.isShowDelete = action.payload
     },
     setOrderInfo: (state, action) => {
       state.user = action?.payload
@@ -24,6 +25,6 @@ export const showOrderInfoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setShowOrderInfo, setNotShowOrderInfo, setOrderInfo } = showOrderInfoSlice?.actions
+export const { setShowDeleteOrder, setNotShowOrderInfo, setOrderInfo } = showOrderInfoSlice?.actions
 
 export default showOrderInfoSlice.reducer

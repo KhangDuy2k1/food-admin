@@ -6,3 +6,9 @@ table {
     border: 1px solid #ccc; /* Đặt độ dày và màu sắc của viền cho các ô */
     padding: 8px; /* Để tạo khoảng trống bên trong ô */
   }
+.pagination-container {
+  position: fixed;
+  bottom: 0;
+  margin-left: 50%;
+  transform: translate(-100%);
+}

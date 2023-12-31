@@ -18,14 +18,13 @@ const DeleteModal = () => {
     });
   };
    const isShowDelete = useSelector((state) => state.showDelete.isShowDelete)
-   const user = useSelector(state => state.showInfo.user)
-   const handleOk = () => {
-      deleteUser(user.user_id).then((data) => {
-                console.log(data)
-                // navigate("/user")
+   const userInfo = useSelector(state => state.showInfo.user)
+   const handleOk = (e) => {
+      e.preventDefault();
+      deleteUser(userInfo.user_id).then((data) => {
                dispatch(setNotShowDelete())
               openNotification()
-            //  window.location.reload()
+             window.location.reload()
           })
          .catch((error) => {
         // console.log(error)

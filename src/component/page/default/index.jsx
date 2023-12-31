@@ -12,6 +12,7 @@ import ShowInfoModal from '../../modal/order/orderInfo';
 import CreateCoffeeModal from '../../modal/coffee/create/createCoffee';
 import { UpdateCoffeeModal } from '../../modal/coffee/update';
 import DeleteCoffeeModal from '../../modal/coffee/delete';
+import { ShowDeleteOrderModal } from '../../modal/order/deleteOrder';
 const cx = classNames.bind(styles)
 const { Content } = Layout; 
 const DefaultComponent = ({children, data}) => {
@@ -19,9 +20,8 @@ const DefaultComponent = ({children, data}) => {
     <div>
         {/* <h2 style={{marginBottom: "10px"}}>ADMIN DASHBOARD</h2> */}
           <DeleteCoffeeModal/>
-          
+          <ShowDeleteOrderModal/>
           <UpdateCoffeeModal/> 
-          
          <CreateCoffeeModal/> 
          <ShowInfoModal/>
          <InfoUserModal/>

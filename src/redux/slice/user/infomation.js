@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
      isShowInfo: false,
      user: {
-        user_id: "",
-        email: "",
-        phonenumber:"",
-        password: "",
-        role: "user"
+         user_id: "",
+         username: "",
+         email: "",
+         fullname: "",
+         gender: "",
+         phone: "",
+         address: ""
      }
 }
 export const showInfoSlice = createSlice({
@@ -21,7 +23,7 @@ export const showInfoSlice = createSlice({
       state.isShowInfo = false
     },
     setInfoUser: (state, action) => {
-      state.user.user_id = action?.payload.user_id
+      state.user = action?.payload
     }
   },
 })

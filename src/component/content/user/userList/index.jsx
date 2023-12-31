@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoMdInformationCircleOutline } from "react-icons/io"
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import ButtonComponent from "../../../button";
 import { setShowUpdate, setNotShowUpdate } from "../../../../redux/slice/user/showModalUpdate"
@@ -16,18 +17,6 @@ const cx = classNames.bind(styles)
 const UserList = (props) => {
     const dispatch = useDispatch();
     const { user } = props;
-    // const handleUpdate = (e) => {
-    //         e.stopPropagation();
-    //         dispatch((setInfoUser({
-    //             _id: item._id,
-    //             email: item.email,
-    //             password: item.password,
-    //             phonenumber: item.phonenumber,
-    //             role: item.role
-    //         })))
-    //        dispatch(setShowUpdate(''))
-    // }
-    
     const handleDelete = (e) => {
             e.stopPropagation()
             dispatch(setInfoUser({
@@ -35,16 +24,18 @@ const UserList = (props) => {
             }))
             dispatch(setShowDelete())
     }
-    // const getInfoUser = () => {
-    //         dispatch((setInfoUser({
-    //             _id: item._id,s
-    //             email: item.email,
-    //             password: item.password,
-    //             phonenumber: item.phonenumber,
-    //             role: item.role
-    //         })))
-    //         dispatch(setShowInfo())
-    // }
+    const getInfoUser = () => {
+            dispatch((setInfoUser({
+                user_id: user.user_id,
+                username: user.username,
+                email: user.email,
+                fullname: user.fullname,
+                gender: user.gender,
+                phone: user.phone,
+                address: user.address
+            })))
+            dispatch(setShowInfo())
+    }
     return (
         <tr>
             <td>{user.user_id}</td>
@@ -54,13 +45,11 @@ const UserList = (props) => {
             <td>{user.gender}</td>
             <td>{user.phone}</td>
             <td>{user.address}</td>
-            <td>
-            <RiDeleteBin6Line onClick={handleDelete} style={{cursor: "pointer",fontSize: "20px", color: "red", marginRight: "20px"}}/>
-            <MdOutlineSystemUpdateAlt style={{cursor: "pointer",fontSize: "20px", color: "#66b3ff"}}/>
+            <td style={{display: "flex", justifyContent: "space-around"}}>
+            <RiDeleteBin6Line onClick={handleDelete} style={{cursor: "pointer",fontSize: "20px", color: "red"}}/>
+            <IoMdInformationCircleOutline onClick={getInfoUser}  style={{cursor: "pointer",fontSize: "20px", color: "#004080"}}/>
             </td>
         </tr>
-      
-        
     )
 }  
 export default UserList;

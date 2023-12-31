@@ -23,9 +23,11 @@ const InfoUserModal = () => {
       <Modal title="Thông tin Người dùng" open = {isShowInfo} onOk={handleOk} onCancel={hanldeCancle}>
         <div className={cx('container-info')}>
                 <p> <span>email: </span> {user.email}</p>
-                <p> <span>password: </span>{user.password}</p>
-                <p> <span>phonenumber: </span> {user.phonenumber}</p>
-                <p><span>role: </span>{user.role}</p>
+                <p> <span>username: </span>{user.username}</p>
+                <p> <span>phonenumber: </span> {user.phone}</p>
+                <p><span>fullname: </span>{user.fullname}</p>
+                <p><span>gender: </span>{user.gender}</p>
+                <p><span>address: </span>{user.address}</p>
         </div>
       </Modal>
     </>

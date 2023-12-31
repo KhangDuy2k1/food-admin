@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {setNotShowOrderInfo} from "../../../../redux/slice/order/InfoOrder"
+import {setNotShowOrderInfo} from "../../../../redux/slice/order/InfoOrder";
 import { Button, Modal } from 'antd';
 const ShowInfoModal = () => {
   const dispatch = useDispatch()
