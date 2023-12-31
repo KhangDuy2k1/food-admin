@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import ButtonComponent from "../../../button";
 import { setShowUpdate, setNotShowUpdate } from "../../../../redux/slice/user/showModalUpdate"
 import { setShowDelete, setNotShowDelete } from "../../../../redux/slice/user/delete";
@@ -13,45 +15,52 @@ import classNames  from "classnames/bind";
 const cx = classNames.bind(styles)
 const UserList = (props) => {
     const dispatch = useDispatch();
-    const { item, index } = props
-    const handleUpdate = (e) => {
-            e.stopPropagation();
-            dispatch((setInfoUser({
-                _id: item._id,
-                email: item.email,
-                password: item.password,
-                phonenumber: item.phonenumber,
-                role: item.role
-            })))
-           dispatch(setShowUpdate(''))
-    }
+    const { user } = props;
+    // const handleUpdate = (e) => {
+    //         e.stopPropagation();
+    //         dispatch((setInfoUser({
+    //             _id: item._id,
+    //             email: item.email,
+    //             password: item.password,
+    //             phonenumber: item.phonenumber,
+    //             role: item.role
+    //         })))
+    //        dispatch(setShowUpdate(''))
+    // }
     
     const handleDelete = (e) => {
             e.stopPropagation()
             dispatch(setInfoUser({
-                _id: item._id
+                user_id: user.user_id
             }))
             dispatch(setShowDelete())
     }
-    const getInfoUser = () => {
-            dispatch((setInfoUser({
-                _id: item._id,
-                email: item.email,
-                password: item.password,
-                phonenumber: item.phonenumber,
-                role: item.role
-            })))
-            dispatch(setShowInfo())
-    }
+    // const getInfoUser = () => {
+    //         dispatch((setInfoUser({
+    //             _id: item._id,s
+    //             email: item.email,
+    //             password: item.password,
+    //             phonenumber: item.phonenumber,
+    //             role: item.role
+    //         })))
+    //         dispatch(setShowInfo())
+    // }
     return (
-         <div onClick={getInfoUser} className={cx('user-container')}> 
-            <p className={cx('stt')}> {index}</p>
-            <p className={cx('email')}>{item.email}</p>
-            <div className={cx('btn-container')}>
-            <ButtonComponent onClick = { handleUpdate} className = {cx('btn-update')}>Update</ButtonComponent>
-            <ButtonComponent onClick = {handleDelete} className = {cx('btn-delete')}>Delete</ButtonComponent>
-            </div>
-        </div>
+        <tr>
+            <td>{user.user_id}</td>
+            <td>{user.username}</td>
+            <td>{user.email}</td>
+            <td>{user.fullname}</td>
+            <td>{user.gender}</td>
+            <td>{user.phone}</td>
+            <td>{user.address}</td>
+            <td>
+            <RiDeleteBin6Line onClick={handleDelete} style={{cursor: "pointer",fontSize: "20px", color: "red", marginRight: "20px"}}/>
+            <MdOutlineSystemUpdateAlt style={{cursor: "pointer",fontSize: "20px", color: "#66b3ff"}}/>
+            </td>
+        </tr>
+      
+        
     )
 }  
 export default UserList;

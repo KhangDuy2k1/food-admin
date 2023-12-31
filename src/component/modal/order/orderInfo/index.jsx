@@ -5,9 +5,9 @@ import { Button, Modal } from 'antd';
 const ShowInfoModal = () => {
   const dispatch = useDispatch()
   const isShow = useSelector((state) => state.showOrderInfo.isShowOrderInfo)
-  console.log(isShow)
+  // console.log(isShow)
   const infoUser = useSelector((state) => state.showOrderInfo.user)
-  console.log(infoUser)
+  // console.log(infoUser)
   const showModal = () => {
 
   };

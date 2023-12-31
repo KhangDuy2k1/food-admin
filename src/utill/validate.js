@@ -44,14 +44,14 @@ export const validateEmail = (rule, value) => {
     return Promise.resolve();
   };
   export const validateName = (rule, value) => {
-    console.log(value)
+    // console.log(value)
     if (!value) {
       return Promise.reject('tên không được để trống.');
     }
     return Promise.resolve();
   };
   export const validateDesc = (rule, value) => {
-    console.log(value)
+    // console.log(value)
     if (!value) {
       return Promise.reject('link ảnh không được để trống.');
     }

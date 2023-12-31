@@ -58,7 +58,7 @@ const SidebarComponent = () => {
             {
               key: "5",
               icon: <BiCoffeeTogo style={{fontSize: "18px"}}/>,
-              label: "Coffee"
+              label: "Product"
             },
             {
               key: '4',

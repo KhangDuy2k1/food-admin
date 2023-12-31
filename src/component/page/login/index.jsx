@@ -16,24 +16,23 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error , setError] = useState('')
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    useEffect(() => {
-      const accessToken = localStorage.getItem("accessToken")
-      accessToken && navigate('/home');
-    }, [])
+    // useEffect(() => {
+    //   const accessToken = localStorage.getItem("accessToken")
+    //   accessToken && navigate('/home');
+    // }, [])
     const handleLogin = async(e) => {
       e.preventDefault()
       const responseLogin = await LoginAxios(email, password)
-      if(responseLogin.success){
-        if( responseLogin.user.role === "admin") {
-          localStorage.setItem('accessToken', responseLogin.accessToken);
-          // setLogin(true);
-          localStorage.setItem("email", responseLogin.user.email)
-          localStorage.setItem("avatar", responseLogin.user.avatar)
+      if(responseLogin.data){
+        // if( responseLogin.user.role === "admin") {
+        //   localStorage.setItem('accessToken', responseLogin.accessToken);
+        //   // setLogin(true);
+        //   localStorage.setItem("email", responseLogin.user.email)
+        //   localStorage.setItem("avatar", responseLogin.user.avatar)
           navigate('/home')
-        }else {
-          setError("you are not an admin")
-        }
+        // }else {
+        //   setError("you are not an admin")
+        // }
       }else {
         setError("wrong login information")
       }

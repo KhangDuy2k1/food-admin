@@ -1,11 +1,11 @@
 import axios from "axios";
-const accessToken = localStorage.getItem('accessToken');
+// const accessToken = localStorage.getItem('accessToken');
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8888/api', 
+    baseURL: 'https://khangbarca.vercel.app', 
     timeout: 5000,
     headers: {
       'Content-Type': 'application/json',
-      "Authorization": `Bearer ${accessToken}`
+      // "Authorization": `Bearer ${accessToken}`
 
     },
 });

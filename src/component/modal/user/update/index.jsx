@@ -59,7 +59,7 @@ const UpdateUserModal = () => {
                 localStorage.removeItem("accessToken")
                 navigate("/")
             }else if(data.error) {
-                console.log(data.error)
+                // console.log(data.error)
             }else {
               openNotification('top')
               dispatch(setNotShowUpdate())

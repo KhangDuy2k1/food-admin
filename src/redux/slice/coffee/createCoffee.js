@@ -31,7 +31,7 @@ export const showOrderInfoSlice = createSlice({
         state.visibleDeleteCoffee = action.payload
     },
     setCoffeeId: (state, action) => {
-      console.log(action.payload)
+      // console.log(action.payload)
          state.coffee._id = action.payload
     },
     setCoffee: (state, action) => {

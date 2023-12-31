@@ -2,7 +2,7 @@
 import { getListCoffee } from "../../../api/coffee/listCoffees"
 export const getallcoffeeCategory = async() => { 
         const listcoffee = await getListCoffee()
-        console.log( listcoffee.allCoffee.allCoffee)
+        // console.log( listcoffee.allCoffee.allCoffee)
         const totalcoffee =  listcoffee.allCoffee.allCoffee.filter((item) => { 
                 return item.category._id === "6502f78da7cec6a1ae697144"
          }).length

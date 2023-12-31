@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
      isShowInfo: false,
      user: {
-        _id: "",
+        user_id: "",
         email: "",
         phonenumber:"",
         password: "",
@@ -21,7 +21,7 @@ export const showInfoSlice = createSlice({
       state.isShowInfo = false
     },
     setInfoUser: (state, action) => {
-      state.user = action?.payload
+      state.user.user_id = action?.payload.user_id
     }
   },
 })

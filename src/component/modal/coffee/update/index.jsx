@@ -29,7 +29,7 @@ export const UpdateCoffeeModal = () => {
     }
     const isShow = useSelector((state) => state.showCreateCoffee.visibleUpdateCoffee)
     const coffee = useSelector((state) => state.showCreateCoffee.coffee)
-    console.log("================================")
+    // console.log("================================")
     const handleCancle = () => {
         dispatch(setShowUpdateCoffee(false))
     }
@@ -102,7 +102,7 @@ export const UpdateCoffeeModal = () => {
         <Form.Item name="select">
         <TreeSelect
           onChange={(value) => {
-              console.log(value)
+              // console.log(value)
             return setCategory(value)}}
           defaultValue={category}
           style={{

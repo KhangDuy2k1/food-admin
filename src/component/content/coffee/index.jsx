@@ -24,7 +24,6 @@ export const Coffee = () => {
     }
     const [listCoffees, setListCoffees ] = useState()
     const handleCreateCoffee = () => { 
-        console.log("=================")
         dispatch(showCreateCoffee())
     }
     useEffect(() => {

@@ -1,10 +1,11 @@
 import axiosInstance from "../configAxios";
 export const deleteUser = async(id_user) => { 
      try {
-        const response = await axiosInstance.delete(`/user/deleteuser/${id_user}`)
-      //   console.log(response)
+        console.log(id_user)
+        const response = await axiosInstance.delete(`/users/delete/id=${id_user}`)
         return response.data
      } catch (error) {
+        console.log(error)
         return error.response.data
      }
 }

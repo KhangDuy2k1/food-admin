@@ -6,7 +6,7 @@ import styles from "./coffeeList.module.scss"
 import classNames from "classnames/bind"
 const cx = classNames.bind(styles)
 export const CoffeeList = ({item, index}) => {
-        console.log(item.name)
+        // console.log(item.name)
         const dispatch = useDispatch()
         const handleUpdateCoffee = () => {
           dispatch(setCoffeeId(item._id))

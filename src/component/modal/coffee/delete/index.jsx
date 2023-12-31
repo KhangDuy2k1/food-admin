@@ -17,19 +17,19 @@ const DeleteCoffeeModal = () => {
      const dispatch = useDispatch();
     const isShowDelete = useSelector((state) => state.showCreateCoffee.visibleDeleteCoffee)
     const idCoffeeDelete = useSelector((state) => state.showCreateCoffee.coffee._id)
-    console.log(idCoffeeDelete)
+    // console.log(idCoffeeDelete)
   const showModal = () => {
     
   };
   const handleOk = () => {
     
     deleteCoffeeAxios(idCoffeeDelete).then((data) => {
-        console.log(data)
+        // console.log(data)
         if(data.error === "jwt expired"){
            localStorage.removeItem("accessToken")
            navigate('/')
         }else if(data.error) {
-           console.log(data.error)
+          //  console.log(data.error)
         }else {
           openNotification("1", "Thông báo", "Xóa người dùng thành công")
            window.location.reload()

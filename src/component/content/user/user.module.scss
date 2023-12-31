@@ -22,3 +22,9 @@
 //         }
 //     }
 // }
+.pagination-container {
+    position: fixed;
+    bottom: 2px;
+    margin-left:50%;
+    transform: translateX(-100%);
+}

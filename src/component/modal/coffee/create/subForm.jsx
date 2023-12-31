@@ -35,7 +35,7 @@ const FormCreate = () => {
         }else if(response?.mes === "lỗi server"){
                     openNotification("1", "Thông báo", "Có lỗi xảy ra" )
         }else {
-             console.log("tao thanh cong")
+            //  console.log("tao thanh cong")
              openNotification("2", "Thông báo tạo cà phê", "Tạo cà phê thành công")
             //  dispatch(notShowCreateCoffee())
              window.location.reload();

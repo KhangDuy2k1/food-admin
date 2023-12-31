@@ -11,7 +11,7 @@ export const updateCoffee  = async({_id,
             image: image,
             price: price
         })
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     } catch (error) {
         return error.response.data

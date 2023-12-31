@@ -20,20 +20,15 @@ const DeleteModal = () => {
    const isShowDelete = useSelector((state) => state.showDelete.isShowDelete)
    const user = useSelector(state => state.showInfo.user)
    const handleOk = () => {
-      deleteUser(user._id).then((data) => {
-          if(data.error === "jwt expired") {
-                localStorage.removeItem("accessToken")
-                navigate("/")
-
-          }else if(data.error) {
-                console.log(data.error)
-          }else {
-            dispatch(setNotShowDelete())
-            openNotification()
-            window.location.reload()
-          }
-      }).catch((error) => {
-        console.log(error)
+      deleteUser(user.user_id).then((data) => {
+                console.log(data)
+                // navigate("/user")
+               dispatch(setNotShowDelete())
+              openNotification()
+            //  window.location.reload()
+          })
+         .catch((error) => {
+        // console.log(error)
       })
    }
    const handleCancel = () => {

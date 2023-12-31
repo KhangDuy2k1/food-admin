@@ -5,13 +5,16 @@ import { Data, getallcoffeeCategory } from "./data";
 import { LineChart } from "./barChart";
 import { notification } from "antd";
 import PieChart from "./pieChart";
-import { totalUser } from "../../../api/user/totaluser";
-import { totalOrder } from "../../../api/order/totalorder";
-import { listAllOrders } from "../../../api/order/listOrder";
+// import { totalUser } from "../../../api/user/totaluser";
+// import { totalOrder } from "../../../api/order/totalorder";
+// import { listAllOrders } from "../../../api/order/listOrder";
 import { useNavigate } from "react-router-dom";
 import styles from './home.module.scss'
 import classNames from "classnames/bind";
-import { totalCancled } from "../../../api/order/totalOrderCancle";
+// import { totalCancled } from "../../../api/order/totalOrderCancle";
+import { allUserFootApp } from "../../../api/user/footapp/allUserFoot";
+import { allOrdersFoot } from "../../../api/user/footapp/allOrders";
+import { allProductFoot } from "../../../api/user/footapp/allProducts";
 const cx = classNames.bind(styles)
 export default function Home() {
   const navigate = useNavigate();
@@ -67,123 +70,99 @@ export default function Home() {
 
   const [totalUs, setTotalUs] = useState("");
   const [totalOd, setTotalOd] = useState("");
-  const [totalCal, setTotalCal] = useState("");
+  const [totalProduct, setTotalProduct] = useState("");
 
   useEffect(() => {
     Promise.all([
-      totalUser(),
-      totalOrder(),
-      totalCancled(),
-      listAllOrders(),
-      getallcoffeeCategory()
-    ])
-      .then(([totalUserResponse, totalOrderResponse, totalCancledResponse, listAllOrdersResponse, getTotalCoffeeResponse]) => {
-        if (totalUserResponse.mes === "jwt expired") {
-          localStorage.removeItem("accessToken");
-          navigate("/");
-        } else if (totalUserResponse.error) {
-          openNotification("1", "thông báo", "có lỗi xảy ra");
-        } else {
-          setTotalUs(totalUserResponse.totalUser);
-        }
+      allUserFootApp(),
+      allOrdersFoot(),
+      allProductFoot()
+    ]).then(([allUsers, allOrders, allProducts]) => {
+       setTotalUs(allUsers.total)
+       setTotalOd(allOrders.total)
+       setTotalProduct(allProducts.total)
+      // totalUser(),
+        //   return order.coffeeItem_id.category === "6502f78da7cec6a1ae697144";
+        // });
+        // let totalOrderCoffee = arrCoffee.length;
 
-        if (totalOrderResponse.mes === "jwt expired") {
-          localStorage.removeItem("accessToken");
-          navigate("/");
-        } else {
-          setTotalOd(totalOrderResponse.total);
-        }
+        // const arrTea = orders.allOrder.filter((order) => {
+        //   return order.coffeeItem_id.category === "6502f794a7cec6a1ae697147";
+        // });
+        // let totalOrderTea = arrTea.length;
 
-        if (totalCancledResponse.mes === "jwt expired") {
-          localStorage.removeItem("accessToken");
-          navigate("/");
-        } else {
-          setTotalCal(totalCancledResponse.total);
-        }
+        // const arrDaxay = orders.allOrder.filter((order) => {
+        //   return order.coffeeItem_id.category === "6502f7a3a7cec6a1ae69714a";
+        // });
+        // let totalDaxay = arrDaxay.length;
 
-        const orders = listAllOrdersResponse;
-        const arrCoffee = orders.allOrder.filter((order) => {
-          return order.coffeeItem_id.category === "6502f78da7cec6a1ae697144";
-        });
-        let totalOrderCoffee = arrCoffee.length;
+        // const arrTaybac = orders.allOrder.filter((order) => {
+        //   return order.coffeeItem_id.category === "6502f7ada7cec6a1ae69714d";
+        // });
+        // let totalTayBac = arrTaybac.length;
 
-        const arrTea = orders.allOrder.filter((order) => {
-          return order.coffeeItem_id.category === "6502f794a7cec6a1ae697147";
-        });
-        let totalOrderTea = arrTea.length;
-
-        const arrDaxay = orders.allOrder.filter((order) => {
-          return order.coffeeItem_id.category === "6502f7a3a7cec6a1ae69714a";
-        });
-        let totalDaxay = arrDaxay.length;
-
-        const arrTaybac = orders.allOrder.filter((order) => {
-          return order.coffeeItem_id.category === "6502f7ada7cec6a1ae69714d";
-        });
-        let totalTayBac = arrTaybac.length;
-
-        const newData = [
-          {
-            id: 1,
-            name: "cà phê",
-            total: totalOrderCoffee,
-          },
-          {
-            id: 2,
-            name: "trà",
-            total: totalOrderTea,
-          },
-          {
-            id: 3,
-            name: "đồ uống đá xay",
-            total: totalDaxay,
-          },
-          {
-            id: 4,
-            name: "trà xanh tây bắc",
-            total: totalTayBac,
-          },
-        ];
-        setData(newData);
-        setTotal(getTotalCoffeeResponse)
-        console.log(getTotalCoffeeResponse)
-        // Cập nhật chartData
-        setChartData({
-          labels: newData.map((item) => item.name),
-          datasets: [
-            {
-              label: "Users Gained",
-              data: newData.map((item) => item.total),
-              backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-              ],
-              borderColor: "black",
-              borderWidth: 2,
-            },
-          ],
-        });
-        setChartTotal({
-          labels: getTotalCoffeeResponse.map((item) => item.name),
-          datasets: [
-            {
-              label: "Tổng số c",
-              data: getTotalCoffeeResponse.map((item) => item.total),
-              backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-              ],
-              borderColor: "black",
-              borderWidth: 2,
-            },
-          ],
-        });
+        // const newData = [
+        //   {
+        //     id: 1,
+        //     name: "cà phê",
+        //     total: totalOrderCoffee,
+        //   },
+        //   {
+        //     id: 2,
+        //     name: "trà",
+        //     total: totalOrderTea,
+        //   },
+        //   {
+        //     id: 3,
+        //     name: "đồ uống đá xay",
+        //     total: totalDaxay,
+        //   },
+        //   {
+        //     id: 4,
+        //     name: "trà xanh tây bắc",
+        //     total: totalTayBac,
+        //   },
+        // ];
+        // setData(newData);
+        // setTotal(getTotalCoffeeResponse)
+        // console.log(getTotalCoffeeResponse)
+        // // Cập nhật chartData
+        // setChartData({
+        //   labels: newData.map((item) => item.name),
+        //   datasets: [
+        //     {
+        //       label: "Users Gained",
+        //       data: newData.map((item) => item.total),
+        //       backgroundColor: [
+        //         "rgba(75,192,192,1)",
+        //         "#ecf0f1",
+        //         "#50AF95",
+        //         "#f3ba2f",
+        //         "#2a71d0",
+        //       ],
+        //       borderColor: "black",
+        //       borderWidth: 2,
+        //     },
+        //   ],
+        // });
+        // setChartTotal({
+        //   labels: getTotalCoffeeResponse.map((item) => item.name),
+        //   datasets: [
+        //     {
+        //       label: "Tổng số c",
+        //       data: getTotalCoffeeResponse.map((item) => item.total),
+        //       backgroundColor: [
+        //         "rgba(75,192,192,1)",
+        //         "#ecf0f1",
+        //         "#50AF95",
+        //         "#f3ba2f",
+        //         "#2a71d0",
+        //       ],
+        //       borderColor: "black",
+        //       borderWidth: 2,
+        //     },
+        //   ],
+        // });
       })
       .catch((error) => {
         console.error("Lỗi khi lấy dữ liệu:", error);
@@ -201,8 +180,8 @@ export default function Home() {
                     <p className={cx("total")}>{totalOd}</p>
                    </div>
                    <div className= {cx('sub-total-container')}>
-                    <p className={cx('header-total')}>Tổng số đơn hủy</p>
-                    <p className={cx("total")}>{totalCal}</p>
+                    <p className={cx('header-total')}>Tổng số sản phẩm</p>
+                    <p className={cx("total")}>{totalProduct}</p>
                    </div>
             </div>
             <div className="App" style={{width : "100%", display: "flex",     justifyContent: "space-around", marginTop: "10px"}}>

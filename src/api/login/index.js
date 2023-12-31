@@ -1,16 +1,14 @@
 import axiosInstance from "../configAxios/index"
 export const LoginAxios = async(username, password) => {
         try {
-        const responseLogin =  await axiosInstance.post('/user/login', {
-                email: username,
+        const responseLogin =  await axiosInstance.post('/admins/signin', {
+                username: username,
                 password: password
             }
         )
+        // console.log(responseLogin);
                 return responseLogin.data;
         } catch (error) {
-           console.error('Error:', error);
-           console.error('Status code:', error.response.status);
-           console.error('Response data:', error.response.data);
            return error.response.data
         }
 }

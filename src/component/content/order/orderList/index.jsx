@@ -6,7 +6,7 @@ import { useState } from "react";
 import { setShowOrderInfo, setOrderInfo } from "../../../../redux/slice/order/InfoOrder";
 const cx = classNames.bind(styles);
 const OrderList = ({item, index}) => {
-    console.log(item)
+    // console.log(item)
     const date = new Date(item.createAt);
     const year = date.getFullYear();
     const month = date.getMonth() + 1; // Tháng bắt đầu từ 0, cần cộng thêm 1
