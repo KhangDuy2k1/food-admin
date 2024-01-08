@@ -1,15 +1,10 @@
-import { Layout, Menu, Button, theme } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useParams } from 'react-router-dom';
+import { Layout, Menu} from 'antd';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { BiCoffeeTogo } from 'react-icons/bi'
-import {
-    ArrowLeftOutlined,
-    UserOutlined,
-    ShoppingOutlined,
-    HomeOutlined
-  } from '@ant-design/icons';
-import { setShow } from '../../redux/slice/user/showModalLogout';
+import { IoStorefrontOutline,IoHome } from "react-icons/io5";
+import { FaShoppingBag, FaUserFriends} from "react-icons/fa";
+import { VscSignOut } from "react-icons/vsc";
+import { setLogoutModal } from '../../redux/slice/user';
 const { Sider } = Layout;
 const SidebarComponent = () => {
     const dispatch = useDispatch();
@@ -25,10 +20,10 @@ const SidebarComponent = () => {
          navigate('/order')
         }
         if(item.key === '4') {
-          dispatch(setShow())
+          dispatch(setLogoutModal(true))
         }
         if(item.key === "5"){
-          navigate('/coffee')
+          navigate('/store')
         }
      }
     return (
@@ -42,27 +37,27 @@ const SidebarComponent = () => {
           items={[
             {
                 key: '1',
-                icon: <HomeOutlined style={{fontSize: "18px"}}/> ,
+                icon: <IoHome style={{fontSize: "18px"}}/> ,
                 label: 'Home',
             },
             {
               key: '2',
-              icon: <UserOutlined style={{fontSize: "18px"}}/>,
+              icon: <FaUserFriends style={{fontSize: "18px"}}/>,
               label: 'User',
             },
             {
               key: '3',
-              icon: <ShoppingOutlined style={{fontSize: "18px"}}/> ,
+              icon: <FaShoppingBag style={{fontSize: "18px"}}/> ,
               label: 'Order',
             },
             {
               key: "5",
-              icon: <BiCoffeeTogo style={{fontSize: "18px"}}/>,
-              label: "Product"
+              icon: <IoStorefrontOutline style={{fontSize: "18px"}}/>,
+              label: "Store"
             },
             {
               key: '4',
-              icon: <ArrowLeftOutlined style={{fontSize: "18px"}}/>,
+              icon: <VscSignOut style={{fontSize: "18px"}}/>,
               label: 'Log out',
             },
             

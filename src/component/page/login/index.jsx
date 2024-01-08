@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone, LockOutlined } from '@ant-design/icons';
 import { LoginAxios } from "../../../api/login";
-import { setInfoUser } from "../../../redux/slice/user/infomation";
+// import { setInfoUser } from "../../../redux/slice/user/infomation";
 import { Input } from 'antd';
 import { useEffect, useState } from "react";
 import { User } from "../../../utill/validate";

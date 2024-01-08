@@ -6,10 +6,9 @@ export const LoginAxios = async(username, password) => {
                 password: password
             }
         )
-        // console.log(responseLogin);
                 return responseLogin.data;
         } catch (error) {
-           return error.response.data
+                return error.response.data
         }
 }
 

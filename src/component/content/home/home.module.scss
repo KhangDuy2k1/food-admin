@@ -2,11 +2,19 @@
    height: 150px;
     display: flex; 
     justify-content: space-around;
+    .s1 {
+      background-color: #ff80c3;
+    }
+    .s2 {
+      background-color:  #39ac39;
+    }
+    .s3 {
+      background-color:  #ffad33;
+    }
     .sub-total-container {
          border-radius: 15px;
          width: 30%;
          height: 100%;
-         background-color: #A9A9A9;
          .header-total {
             font-size: 17px;
             margin: 10px 10px;
@@ -19,4 +27,18 @@
             color: #F0FFFF;
          }
     }
+}
+.product-name { 
+  cursor: pointer;
+  font-size: 18px;
+}
+.quantity {
+  background-color: #ffad33;
+  color: white;
+  display: inline;
+}
+.product-best {
+  cursor: pointer;
+  color: #FA8072;
+  font-size: 18px;
 }

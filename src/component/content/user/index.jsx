@@ -1,11 +1,12 @@
 import styles from "./user.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
-import { listUsers } from "../../../api/user/listUser";
 import classNames  from "classnames/bind";
 import UserList from "./userList";
 import { useEffect, useState } from "react";
-import { allUserFootApp } from "../../../api/user/footapp/allUserFoot";
+import { allUserFootApp } from "../../../api/user";
+import Search from "antd/es/input/Search";
+// import 
 const cx = classNames.bind(styles)
 const UserContent = () => {
     const [userLists, setUserLists] = useState()
@@ -15,9 +16,22 @@ const UserContent = () => {
             setUserLists(data.data)   
     })
     }, [page])
+    const onSearch = (value) => {
+       allUserFootApp().then((data) => {
+            const users =  data.data.filter((user) => {
+                return user.username.includes(value) || user.email.includes(value)
+            })  
+            if(users.length > 5){ 
+                setUserLists(users.slice(0, 5))
+            }else {
+                setUserLists(users)
+            }
+       })
+    }
     return (
        <div>
-  <table>
+        <Search style={{width: "300px"}} placeholder="Tìm kiếm người dùng" onSearch={onSearch} enterButton />
+        <table>
             <tr>
                <th>stt</th>
                <th>username</th>
@@ -28,18 +42,8 @@ const UserContent = () => {
                <th>address</th>
                <th>action</th>
             </tr>
-            {/* <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-            </tr> */}
-            {userLists?.map((user) => {
-                return <UserList user = {user}/>
+            {userLists?.map((user, index) => {
+                return <UserList user = {user} index = {index}/>
             })}
         </table>
         <div className={cx('pagination-container')}>
