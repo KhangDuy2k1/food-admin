@@ -24,7 +24,7 @@ const onFinishFailed = (errorInfo) => {
       <Modal
         footer={null}
         title="Cập nhật đơn hàng"
-        open={true}
+        open={false}
         onOk={handleOk}
         onCancel={handleCancel}
       >
