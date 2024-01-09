@@ -18,12 +18,12 @@ return  {
   }
 }
 
-export function setChartDataBar(dataBarChart){
+export function setChartDataBar(dataBarChart, label){
   return {
     labels: dataBarChart?.labels?.map((data) => data), 
     datasets: [
       {
-        label: "Doanh thu",
+        label: label,
         data: dataBarChart?.datasets[0]?.data?.map((data) => data),
         backgroundColor: [
           "#E9967A",

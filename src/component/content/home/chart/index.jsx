@@ -22,8 +22,19 @@ export const BarChart = ({ chartData }) => {
 export function PieChart({ chartData }) {
   return (
     <div className="chart-container">
-      <p style={{ textAlign: "center", fontSize: "20px" }}></p>
+      <div>
+      <p style={{ textAlign: "center"}}>Tổng số đơn hàng theo trạng thái đơn</p>
+      <ul>
+        <li>0: Chờ xác nhận</li>
+        <li style={{color: "blue"}}>1: Đang giao hàng</li>
+        <li style={{color: "green"}}>2: Giao hàng thành công</li>
+        <li style={{color: "red"}}>3: Đơn hàng bị hủy</li>
+
+      </ul>
+      </div>
+     
       <Pie
+        
         data={chartData}
         options={{
           plugins: {

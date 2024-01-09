@@ -12,6 +12,7 @@
       background-color:  #ffad33;
     }
     .sub-total-container {
+         cursor: pointer;
          border-radius: 15px;
          width: 30%;
          height: 100%;
@@ -26,6 +27,9 @@
             margin-left: 20px;
             color: #F0FFFF;
          }
+    }
+    .sub-total-container:hover {
+        opacity: 0.9;
     }
 }
 .product-name { 

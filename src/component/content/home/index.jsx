@@ -6,47 +6,67 @@ import { useNavigate } from "react-router-dom";
 import styles from './home.module.scss'
 import classNames from "classnames/bind";
 import { allUserFootApp } from '../../../api/user';
-import { allProductFoot, productBestSell } from "../../../api/product";
+import { productBestSell } from "../../../api/product";
 import { getAllStoreFoot } from "../../../api/store";
+import { allOrdersFoot, countOrderByStatus } from '../../../api/order';
 import { topBestStore } from './data';
 const cx = classNames.bind(styles)
 export default function Home() {  
   const navigate = useNavigate();
   const [totalUs, setTotalUs] = useState("");
   const [totalStore, setTotalStore] = useState("");
-  const [totalProduct, setTotalProduct] = useState("");
+  const [totalOrder, setTotalOrder] = useState("");
   const [listProductBestSell, setListProductBestSell] = useState([])
+  const [listCountOrderByStatus, setListCountOrderByStatus] = useState([])
   const [dataChart, setDataChart] = useState()
-
   useEffect(() => {
     Promise.all([
        allUserFootApp(),
        getAllStoreFoot(),
-       allProductFoot(),
+       allOrdersFoot(),
        productBestSell(),
-       topBestStore()
-    ]).then(([allUsers, allOrders, allProducts, listProductBestSell, dataChartResponse]) => {
+       topBestStore(),
+       countOrderByStatus()
+    ]).then(([allUsers, allStores, allOrders, listProductBestSell, dataChartResponse, listTotalOrderByStatus]) => {
        setTotalUs(allUsers.total)
-       setTotalStore(allOrders.total)
-       setTotalProduct(allProducts.total)
+       setTotalStore(allStores.total)
+       setTotalOrder(allOrders.total)
        setListProductBestSell(listProductBestSell)
        setDataChart(dataChartResponse)
+       setListCountOrderByStatus(listTotalOrderByStatus)
       })
       .catch((error) => {
         console.error("Lỗi khi lấy dữ liệu:", error);
       });
   }, [navigate]);
+
+  let countOrders = listCountOrderByStatus?.map((data) => { 
+        return data.count
+  })
+  let status = listCountOrderByStatus?.map((data) => { 
+        return data.status
+  })
+ 
   let arrStoreName = dataChart?.map((store) => { 
         return store.store_name
   })
   let arrStoreTotal = dataChart?.map((store) => { 
         return store.total
   })
-  const dataBarChart = setDataBarChart(
+
+    const dataPieChart = setDataBarChart(
+    status,
+    countOrders
+    ) 
+
+    const dataBarChart = setDataBarChart(
      arrStoreName,
      arrStoreTotal
     ) 
-    let chartBarData = setChartDataBar(dataBarChart);
+
+    let chartPieData = setChartDataBar(dataPieChart, "số đơn hàng");
+    let chartBarData = setChartDataBar(dataBarChart, "doanh thu");
+    
   return (
     <div>
             <div className={cx('total-container')} >
@@ -59,8 +79,8 @@ export default function Home() {
                     <p className={cx("total")}>{totalStore}</p>
                    </div>
                    <div className= {cx("s3","sub-total-container")}>
-                    <p className={cx('header-total')}>Tổng số sản phẩm</p>
-                    <p className={cx("total")}>{totalProduct}</p>
+                    <p className={cx('header-total')}>Tổng số đơn hàng</p>
+                    <p className={cx("total")}>{totalOrder}</p>
                    </div>
             </div>
             <div className="App" style={{width : "100%", display: "flex", marginTop: "10px", justifyContent: "space-between"}}>
@@ -80,10 +100,9 @@ export default function Home() {
                   </ol>
                 </div>
                  <div style={{display: "flex"}}>
-                  <PieChart chartData={chartBarData}/>
+                  <PieChart chartData={chartPieData}/>
                   <BarChart chartData={chartBarData} />
                  </div>
-              
            </div>
     </div>
   );

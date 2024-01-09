@@ -3,11 +3,21 @@ import { formatDate } from "../../../../utill/formatDate";
 import { LuPenLine } from "react-icons/lu";
 import { IoMdInformationCircleOutline } from "react-icons/io"
 import styles from "./orderList.module.scss";
+import { useDispatch } from "react-redux";
+import { setShowUpdateOrder } from "../../../../redux/slice/order";
+import { setInfoOrder } from "../../../../redux/slice/order";
 const cx = classNames.bind(styles);
 const OrderList = ({order, index}) => {
     const formattedDate = formatDate(order.order_date)
+    const dispatch = useDispatch()
     const handleUpdate = () => { 
-        console.log(order)
+        dispatch(setInfoOrder({ 
+            id: order.order_id,
+            address: order.address,
+            phone: order.phone,
+            status: order.status
+        }))
+        dispatch(setShowUpdateOrder(true))
     }
     return (
         <tr style={{height: "50px", textAlign: "center"}}>
