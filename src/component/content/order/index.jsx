@@ -1,5 +1,6 @@
 import OrderList from "./orderList";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Pagination} from "antd"
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import { allOrdersFoot, newOrderFoot, searchOdersFoot } from "../../../api/order";
 import classNames from "classnames/bind"
@@ -69,6 +70,9 @@ const Order = () => {
           console.error(error)
        } 
     }
+    const onChange = (value) => {
+            setPage(value)
+    }
     return (
         <div> 
             <div style={{display: "flex"}}>
@@ -106,18 +110,7 @@ const Order = () => {
             <li style={{color: "green"}}>2: Giao hàng thành công</li>
             <li style={{color: "red"}}>3: Đơn hàng bị hủy</li>
            </ul>
-           <div className={cx('pagination-container')}>
-        <PaginationControl
-            page={page}
-            between={4}
-            total={250}
-            limit={10}
-            changePage={(page) => {
-            setPage(page)
-            }}
-            ellipsis={1}
-        />
-        </div>
+            <Pagination onChange={onChange} style={{marginLeft: "50%", transform: "translateX(-80%)", position: "fixed", top: "90%"}} defaultCurrent={page} current={page} total={500} />
         </div>
     )
 }

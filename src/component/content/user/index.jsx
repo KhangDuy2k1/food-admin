@@ -6,6 +6,7 @@ import UserList from "./userList";
 import { useEffect, useState } from "react";
 import { allUserFootApp } from "../../../api/user";
 import Search from "antd/es/input/Search";
+import { Pagination } from "antd"
 // import 
 const cx = classNames.bind(styles)
 const UserContent = () => {
@@ -28,9 +29,13 @@ const UserContent = () => {
             }
        })
     }
+    const onChange = (value) => {
+        setPage(value)
+    }
     return (
        <div>
         <Search style={{width: "300px"}} placeholder="Tìm kiếm người dùng" onSearch={onSearch} enterButton />
+        <div style={{display: "flex", flexDirection: "column"}}>
         <table>
             <tr>
                <th>stt</th>
@@ -46,18 +51,9 @@ const UserContent = () => {
                 return <UserList user = {user} index = {index}/>
             })}
         </table>
-        <div className={cx('pagination-container')}>
-        <PaginationControl
-            page={page}
-            between={4}
-            total={250}
-            limit={10}
-            changePage={(page) => {
-            setPage(page)
-            }}
-            ellipsis={1}
-        />
+        <Pagination onChange={onChange} style={{marginLeft: "50%", transform: "translateX(-80%)", position: "fixed", top: "90%"}} defaultCurrent={page} current={page} total={500} />
         </div>
+        
        </div>
       
         

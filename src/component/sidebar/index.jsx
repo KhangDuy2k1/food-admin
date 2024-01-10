@@ -1,11 +1,10 @@
 import { Layout, Menu} from 'antd';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { IoStorefrontOutline,IoHome } from "react-icons/io5";
 import { FaShoppingBag, FaUserFriends} from "react-icons/fa";
 import { VscSignOut } from "react-icons/vsc";
 import { setLogoutModal } from '../../redux/slice/user';
-import { useEffect, useState } from 'react';
 const { Sider } = Layout;
 let arrMenu = [
   {
