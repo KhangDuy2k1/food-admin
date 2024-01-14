@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { IoAddCircleOutline } from "react-icons/io5";
 import { StoreListComponent } from "./storeList";
-import { Pagination } from "antd"
+import { Pagination, Button } from "antd"
 import { getAllStoreFoot } from "../../../api/store";
+import { useDispatch } from "react-redux";
+import { setShowAddModal } from "../../../redux/slice/store";
 export const StoreComponent = () => { 
      const [page, setPage] = useState(1)
      const [listStores, setListStores] = useState([])
+     const dispatch = useDispatch()
      const onChange = (value) => { 
           setPage(value)
      }
@@ -15,8 +19,15 @@ export const StoreComponent = () => {
             console.error(error)
          })
      }, [page])
+     const handleAdd = () => { 
+      dispatch(setShowAddModal(true))
+     }
      return (
         <div>
+           <button onClick={handleAdd} style={{width: "150px", height: "40px", borderRadius: "20px",display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#B8860B", color: "white", marginBottom: '5px'}}>
+               Thêm cửa hàng
+               <IoAddCircleOutline style={{fontSize: "20px", marginLeft: "5px"}}/>
+            </button>
            <table>
                     <tr>
                            <th>STT</th>

@@ -4,7 +4,6 @@ import ButtonComponent from '../../../button';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setShowUpdateOrder } from '../../../../redux/slice/order';
-import { addressVN } from '../../../../api/utillApi';
 import { statusArr } from './data';
 import { SelectComponent } from './sub';
 import { updateOrdersFoot } from '../../../../api/order';
@@ -12,18 +11,13 @@ export const UpdateOrderModal = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const order = useSelector((state) => state.order)
-   const [allAdress, setAlldress] = useState([])
-   const [province, setProvince] = useState()
-   const [districts, setDistricts] = useState([])
-   const [district, setDistinct] = useState()
    const [phoneNumber, setPhoneNumber] = useState();
    const [statusState, setStatusState] = useState()
-   const [address, setAddress] = useState()
+   const [address, setAddress] = useState("jfaosfjai");
    const [idOrder, setIdOrder] = useState()
    const [api, contextHolder] = notification.useNotification();
    const openNotification = (placement) => {
      api.info({
-      //  message: `Notification ${placement}`,
        description: "Cập nhật thành công",
        placement,
      });
@@ -34,47 +28,27 @@ export const UpdateOrderModal = () => {
       setStatusState(order.infoOrder.status)
       setPhoneNumber(order.infoOrder.phone)
    }, [order])
-   useEffect(() => { 
-    addressVN().then((data) => { 
-      setAlldress(data)
-    }).catch((error) => {
-      console.log(error)
-    })
-   }, [])
   const handleCancel = () => {
      dispatch(setShowUpdateOrder(false))
   };
 
-
-const onChangeProvince = (value) => {
-    const result =  allAdress?.filter((data) => {
-      return data.name === value
-     })[0].districts
-     setDistricts(result)
-     setAddress(null)
-     setProvince(value)
-};
-
-const onChangeDistricts = (value) => { 
-      setAddress(null)
-      setDistinct(value)
-}
-
-
-const onChangeStatus = (value) => {
+  const onChangeStatus = (value) => {
        setStatusState(value)
-}
-const onChangePhoneNumber = (e) => { 
+  }
+  const onChangePhoneNumber = (e) => { 
         setPhoneNumber(e.target.value);
 }
 
+const onChangeAddress = (e) => { 
+  setAddress(e.target.value);
+}
 const handleUpdate = () => {
      
         updateOrdersFoot(
           {
             status : statusState,
-             phone: phoneNumber,
-              address: address ? address : `${district}-${province}`,
+             phone_order: phoneNumber,
+              address_order: address,
                id_order: idOrder
           }).then((data) => {
               dispatch(setShowUpdateOrder(false))
@@ -83,7 +57,6 @@ const handleUpdate = () => {
           console.error(error)
         })
 }
-
   return (
     <>
     {contextHolder}
@@ -103,23 +76,16 @@ const handleUpdate = () => {
     }}
     autoComplete="off"
     >
-
-    <Form.Item
-      label="Địa chỉ"
-      name="address"
-    >
-
-     <div style={{display: "flex"}}>
-         <SelectComponent dataArr={allAdress} pld = "Chọn Tỉnh Thành" onChange={onChangeProvince} value={address ? address?.split('-')[1] : province}/>
-         <SelectComponent dataArr={districts} pld = "Chọn Quận/Huyện" onChange={onChangeDistricts} value={address ? address?.split('-')[0] : district}/>
+    <div style={{display: "flex", justifyContent: "space-between", marginBottom: "40px"}}> 
+      <label style={{marginLeft: "14%"}} htmlFor="">Địa chỉ:</label>
+      <Input onChange={onChangeAddress} style={{width: "67%"}} placeholder='nhập địa chỉ đơn hàng' value={address}/>
     </div>
-
-    </Form.Item>
 
     <div style={{display: "flex", justifyContent: "space-between", marginBottom: "40px"}}> 
       <label style={{marginLeft: "14%"}} htmlFor="">Số điện thoại: </label>
-      <Input onChange={onChangePhoneNumber} style={{width: "67%"}} value={phoneNumber}/>
+      <Input onChange={onChangePhoneNumber} style={{width: "67%"}} placeholder='nhập số điện thoại' value={phoneNumber}/>
     </div>
+
        <div>
        <SelectComponent  dataArr={statusArr} pld="Chọn trạng thái" onChange={onChangeStatus} value={statusState}/>
        </div>

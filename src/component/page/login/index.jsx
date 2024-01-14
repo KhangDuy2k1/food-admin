@@ -1,14 +1,11 @@
 import  ButtonComponent  from "../../button";
 import styles from "./login.module.scss";
 import classNames from "classnames/bind";
-// import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone, LockOutlined } from '@ant-design/icons';
 import { LoginAxios } from "../../../api/login";
-// import { setInfoUser } from "../../../redux/slice/user/infomation";
 import { Input } from 'antd';
 import { useEffect, useState } from "react";
-import { User } from "../../../utill/validate";
 const cx = classNames.bind(styles);
 
 const Login = () => {
@@ -16,23 +13,11 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error , setError] = useState('')
     const navigate = useNavigate();
-    // useEffect(() => {
-    //   const accessToken = localStorage.getItem("accessToken")
-    //   accessToken && navigate('/home');
-    // }, [])
     const handleLogin = async(e) => {
       e.preventDefault()
       const responseLogin = await LoginAxios(email, password)
       if(responseLogin.data){
-        // if( responseLogin.user.role === "admin") {
-        //   localStorage.setItem('accessToken', responseLogin.accessToken);
-        //   // setLogin(true);
-        //   localStorage.setItem("email", responseLogin.user.email)
-        //   localStorage.setItem("avatar", responseLogin.user.avatar)
           navigate('/home')
-        // }else {
-        //   setError("you are not an admin")
-        // }
       }else {
         setError("wrong login information")
       }

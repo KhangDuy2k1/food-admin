@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { IoStorefrontOutline,IoHome } from "react-icons/io5";
 import { FaShoppingBag, FaUserFriends} from "react-icons/fa";
 import { VscSignOut } from "react-icons/vsc";
+import { FaProductHunt } from "react-icons/fa";
 import { setLogoutModal } from '../../redux/slice/user';
 const { Sider } = Layout;
 let arrMenu = [
@@ -28,10 +29,16 @@ let arrMenu = [
       label: "Store"
   },
   {
+      key: '6',
+      icon: <FaProductHunt style={{fontSize: "18px"}}/>,
+      label: 'Product',
+  },
+  {
       key: '4',
       icon: <VscSignOut style={{fontSize: "18px"}}/>,
       label: 'Log out',
   },
+ 
 ]
 const SidebarComponent = () => {
     const dispatch = useDispatch();
@@ -52,6 +59,9 @@ const SidebarComponent = () => {
         }
         if(item.key === "5"){
           navigate('/store')
+        }
+        if(item.key ==="6"){
+          navigate('/product')
         }
      }
     const checkKeyDefault = () => { 

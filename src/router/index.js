@@ -4,6 +4,7 @@ import UserContent from "../component/content/user"
 import Order from "../component/content/order"
 import { DetailUserComponent } from "../component/content/userDetail"
 import { StoreComponent } from "../component/content/store"
+import { ProductContentComponent } from "../component/content/product"
 export const Elms = [
     {
         element : <Login/>,
@@ -28,5 +29,9 @@ export const Elms = [
         element: <Order/>,
         path: "/order"
     },
+    {
+        element: <ProductContentComponent/>,
+        path: "/product"
+    }
 ]
         

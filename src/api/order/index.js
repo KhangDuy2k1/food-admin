@@ -34,12 +34,12 @@ export const searchOdersFoot = async(text) => {
                 throw error.response.data
         }
 }
-export const updateOrdersFoot = async({status, phone, address, id_order}) => {
+export const updateOrdersFoot = async({status, phone_order, address_order, id_order}) => {
         try {
                 const result = await axiosInstance.patch(`/orders/update?id=${id_order}`, {
                         status,
-                        phone,
-                        address
+                        phone_order,
+                        address_order
                 })
                 return result.data
         } catch (error) {

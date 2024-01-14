@@ -13,8 +13,8 @@ const OrderList = ({order, index}) => {
     const handleUpdate = () => { 
         dispatch(setInfoOrder({ 
             id: order.order_id,
-            address: order.address,
-            phone: order.phone,
+            address: order.address_order,
+            phone: order.phone_order,
             status: order.status
         }))
         dispatch(setShowUpdateOrder(true))
@@ -24,8 +24,8 @@ const OrderList = ({order, index}) => {
             <td className={cx('column column-id')}>{index}</td>
             <td className={cx('column column-email')}>{formattedDate}</td>
             <td className={cx('column column-time')}>{order.store_name}</td>
-            <td className={cx('column column-name')}>{order.phone}</td>
-            <td className={cx('column column-quantity')}>{order.address}</td>
+            <td className={cx('column column-name')}>{order.phone_order}</td>
+            <td className={cx('column column-quantity')}>{order.address_order}</td>
             <td className={cx('column column-quantity')}>{order.total_price} VND</td>
             <td className={cx('column column-quantity')}>{order.status}</td>
             <td>  

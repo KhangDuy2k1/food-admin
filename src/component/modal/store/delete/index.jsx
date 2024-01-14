@@ -2,8 +2,8 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import React  from 'react';
 import { Modal, notification  } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { setShowDeleteModal } from '../../../redux/slice/store';
-import { deleteStoreFoot } from '../../../api/store';
+import { setShowDeleteModal } from '../../../../redux/slice/store';
+import { deleteStoreFoot } from '../../../../api/store';
 export const ConfirmDeleteStore = () => {
     
     const dispatch = useDispatch()
@@ -12,7 +12,6 @@ export const ConfirmDeleteStore = () => {
     try {
      
        const result =  await deleteStoreFoot(store.infoStore.store_id)
-       console.log("==============")
        dispatch(setShowDeleteModal(false))
        window.location.reload();
     } catch (error) {

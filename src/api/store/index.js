@@ -27,3 +27,62 @@ export const topBestStoreFoot = async() => {
             throw error.response.data
         }
 }
+
+export const addStoreFoot = async(
+    {
+        store_name,
+        avatar,
+        address,
+        phone,
+        rate,
+        time_open,
+        time_close,
+        store_type
+    }
+) => {
+        try {
+            const result = await axiosInstance.post('/stores/add', 
+                {
+                    store_name,
+                    avatar,
+                    address,
+                    phone,
+                    rate,
+                    time_open,
+                    time_close,
+                    store_type
+                }
+            )
+            return result.data
+        } catch (error) {
+            throw error.response.data
+        }
+}
+export const updateStoreFoot = async({
+    store_id,
+    store_name,
+    avatar,
+    address,
+    phone,
+    rate,
+    time_open,
+    time_close,
+    store_type
+}) => { 
+    try {
+       const result = await axiosInstance.put(`/stores/update/${store_id}`, {
+            store_name,
+            avatar,
+            address,
+            phone,
+            rate,
+            time_open,
+            time_close,
+            store_type
+       })
+       return result.data
+    } catch (error) {
+       throw error.response.data
+    }
+
+}
